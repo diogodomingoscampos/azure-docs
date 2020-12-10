@@ -160,6 +160,10 @@ Close the browser window, return to the SSH prompt, and press the **Enter** key.
 
 You are now signed in to the Azure Linux virtual machine with the role permissions as assigned, such as *VM User* or *VM Administrator*. If your user account is assigned the *Virtual Machine Administrator Login* role, you can use `sudo` to run commands that require root privileges.
 
+When SELinux is enabled, changing the HOME profile path requires the respective configuration at SELinux level, mainly: 
+semanage fcontext -a -e /home /althomedir
+restorecon -R /althomedir
+
 ## Sudo and AAD login
 
 The first time that you run sudo, you will be asked to authenticate a second time. If you don't want to have to authenticate again to run sudo, you can edit your sudoers file `/etc/sudoers.d/aad_admins` and replace this line:
